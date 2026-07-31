@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Consulta de CEP</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+
+<h2>Consulta de CEP</h2>
+
+<!-- Formulário que envia os dados via GET para a rota de busca -->
+<form action="/consulta-cep/buscar" method="get" id="cepForm">
+    <div class="campo">
+        <label for="cep">Digite o CEP:</label>
+        <!-- O atributo 'name="cep"' deve ser exatamente igual ao nome no @RequestParam do Java -->
+        <!-- 'th:value' mantém o CEP digitado no campo após a busca ser realizada -->
+        <input type="text" id="cep" name="cep" placeholder="Ex: 60000000" required/>
+        <button type="submit">Pesquisar</button>
+    </div>
+</form>
+
+<!-- Exibe mensagem de erro caso o Java adicione essa variável no Model -->
+<p class="erro" th:if="${erro}" th:text="${erro}"></p>
+
+<!--
+    ESTRUTURA DE EXIBIÇÃO:
+    O bloco abaixo só é renderizado se a variável 'resultadoCep' EXISTIR no Model (ou seja, após a busca).
+    O addAtribute é, na verdade, a criação de uma variável e então atribuir um valor à esta.
+-->
+<div class="card" th:if="${resultadoCep}">
+    <h3>Resultado da Busca</h3>
+
+    <!--O th:text é soberano.-->
+    <p><strong>CEP:</strong> <span th:text="${#strings.substring(resultadoCep.cep, 0, 5) + '-' + #strings.substring(resultadoCep.cep, 5,8)}"></span></p>
+    <p><strong>Logradouro:</strong> <span th:text="${resultadoCep.street}"></span></p>
+    <p><strong>Bairro:</strong> <span th:text="${resultadoCep.neighborhood}"></span></p>
+    <p><strong>Cidade:</strong> <span th:text="${resultadoCep.city}"></span></p>
+    <p><strong>Estado (UF):</strong> <span th:text="${resultadoCep.state}"></span></p>
+</div>
+</body>
+</html>
