@@ -1,6 +1,6 @@
-package gov.metrofor.requisicaoApi;
+package gov.metrofor.requisicaoApi.model;
 
-public class CepResultDTO {
+public class CepModel {
 
     public String cep;
     public String state;
@@ -8,7 +8,7 @@ public class CepResultDTO {
     public String neighborhood;
     public String street;
 
-    public CepResultDTO(String cep, String state, String city, String neighborhood, String street) {
+    public CepModel(String cep, String state, String city, String neighborhood, String street) {
         this.cep = cep;
         this.state = state;
         this.city = city;
