@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Consulta de CNPJ</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+
+<h2>Consulta de CNPJ</h2>
+
+<!-- Formulário que envia os dados via GET para a rota de busca -->
+<form action="/consulta-cnpj/buscar" method="get" id="cnpjForm">
+    <div class="campo">
+        <label for="cnpj">Digite o CNPJ:</label>
+        <!-- O atributo 'name="cnpj"' deve ser exatamente igual ao nome no @RequestParam do Java -->
+        <!-- 'th:value' mantém o CNPJ digitado no campo após a busca ser realizada -->
+        <input type="text" id="cnpj" name="cnpj" placeholder="Ex: 00.000.000/0000-00" required/>
+        <button type="submit">Pesquisar</button>
+    </div>
+</form>
+
+<!-- Exibe mensagem de erro caso o Java adicione essa variável no Model -->
+<p class="erro" th:if="${erro}" th:text="${erro}"></p>
+
+<!--
+    ESTRUTURA DE EXIBIÇÃO:
+    O bloco abaixo só é renderizado se a variável 'resultadoCep' EXISTIR no Model (ou seja, após a busca).
+    O addAtribute é, na verdade, a criação de uma variável e então atribuir um valor à esta.
+-->
+<div class="card" th:if="${resultadoCnpj}">
+    <h3>Resultado da Busca</h3>
+
+    <!--O th:text é soberano.-->
+    <p><strong>CNPJ:</strong> <span th:text="${#strings.substring(resultadoCnpj.cnpj, 0, 2) + '.' + #strings.substring(resultadoCnpj.cnpj, 2,5) + '.' + #strings.substring(resultadoCnpj.cnpj, 5,8) + '/' + #strings.substring(resultadoCnpj.cnpj, 8,12) + '-' + #strings.substring(resultadoCnpj.cnpj, 12,14)}"></span></p>
+    <p><strong>Porte:</strong> <span th:text="${resultadoCnpj.porte}"></span></p>
+    <p><strong>CEP:</strong> <span th:text="${#strings.substring(resultadoCnpj.cep, 0, 5) + '-' + #strings.substring(resultadoCnpj.cep, 5,8)}"></span></p>
+    <p><strong>Logradouro:</strong> <span th:text="${resultadoCnpj.logradouro}"></span></p>
+    <p><strong>Bairro:</strong> <span th:text="${resultadoCnpj.bairro}"></span></p>
+    <p><strong>Cidade:</strong> <span th:text="${resultadoCnpj.municipio}"></span></p>
+    <p><strong>Estado (UF):</strong> <span th:text="${resultadoCnpj.uf}"></span></p>
+</div>
+</body>
+</html>
