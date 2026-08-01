@@ -1,11 +1,12 @@
-package gov.metrofor.requisicaoApi.controller;
+package com.igorf08.consomeApiBrasil.controller;
 
-import gov.metrofor.requisicaoApi.model.CnpjModel;
-import gov.metrofor.requisicaoApi.service.CnpjService;
+import com.igorf08.consomeApiBrasil.model.CnpjModel;
+import com.igorf08.consomeApiBrasil.service.CnpjService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.client.RestClientException;
 
 @Controller
 public class CnpjController {
@@ -27,7 +28,7 @@ public class CnpjController {
             try {
                 CnpjModel resultado = cnpjService.buscaCnpj(cnpj);
                 model.addAttribute("resultadoCnpj", resultado);
-            } catch (Exception e) {
+            } catch (RestClientException e) {
                 model.addAttribute("erro", "Não foi possível encontrar o CNPJ informado!");
             }
         }
