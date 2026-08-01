@@ -1,4 +1,4 @@
-package com.igorf08.requisicaoApi;
+package com.igorf08.consomeApiBrasil;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -1,4 +1,4 @@
-package com.igorf08.requisicaoApi;
+package com.igorf08.consomeApiBrasil;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
