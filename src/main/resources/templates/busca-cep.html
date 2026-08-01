@@ -1,42 +1,61 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Consulta de CEP</title>
-    <link rel="stylesheet" th:href="@{/css/style.css}" />
+<head th:replace="~{layout :: header('Busca de CEP')}">
+
 </head>
-<body>
+<header>
+    <div th:replace="~{layout :: navbar}"></div>
+</header>
+<body class="bg-slate-900 text-zinc-300 min-h-screen font-sans">
+    <main class="w-full max-w-2xl mx-auto flex flex-col justify-center px-4" style="min-height: calc(100vh - 80px);">
+        <h2 class="text-3xl font-bold text-white mb-8">Consulta de CEP</h2>
+        <form action="/consulta-cep/buscar" method="get" id="cepForm" class="bg-slate-800 p-6 rounded-2xl border border-slate-700 shadow-sm">
 
-<h2>Consulta de CEP</h2>
+            <div class="mb-4">
+                <label for="cep" class="block text-sm font-medium text-slate-400 mb-2">Digite o CEP:</label>
+                <input type="text" id="cep" name="cep" placeholder="Ex: 60000000" required
+                       class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-slate-200 placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-colors"/>
+            </div>
 
-<!-- Formulário que envia os dados via GET para a rota de busca -->
-<form action="/consulta-cep/buscar" method="get" id="cepForm">
-    <div class="campo">
-        <label for="cep">Digite o CEP:</label>
-        <!-- O atributo 'name="cep"' deve ser exatamente igual ao nome no @RequestParam do Java -->
-        <!-- 'th:value' mantém o CEP digitado no campo após a busca ser realizada -->
-        <input type="text" id="cep" name="cep" placeholder="Ex: 60000000" required/>
-        <button type="submit">Pesquisar</button>
-    </div>
-</form>
+            <button type="submit"
+                    class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-medium rounded-lg px-4 py-3 transition-colors shadow-lg shadow-indigo-500/30">
+                Pesquisar
+            </button>
+        </form>
 
-<!-- Exibe mensagem de erro caso o Java adicione essa variável no Model -->
-<p class="erro" th:if="${erro}" th:text="${erro}"></p>
+        <p class="erro" th:if="${erro}" th:text="${erro}"></p>
 
-<!--
-    ESTRUTURA DE EXIBIÇÃO:
-    O bloco abaixo só é renderizado se a variável 'resultadoCep' EXISTIR no Model (ou seja, após a busca).
-    O addAtribute é, na verdade, a criação de uma variável e então atribuir um valor à esta.
--->
-<div class="card" th:if="${resultadoCep}">
-    <h3>Resultado da Busca</h3>
+        <div class="mt-8 bg-slate-800/50 border border-slate-700/50 p-6 rounded-2xl shadow-sm backdrop-blur-sm"
+             th:if="${resultadoCep}">
 
-    <!--O th:text é soberano.-->
-    <p><strong>CEP:</strong> <span th:text="${#strings.substring(resultadoCep.cep, 0, 5) + '-' + #strings.substring(resultadoCep.cep, 5,8)}"></span></p>
-    <p><strong>Logradouro:</strong> <span th:text="${resultadoCep.street}"></span></p>
-    <p><strong>Bairro:</strong> <span th:text="${resultadoCep.neighborhood}"></span></p>
-    <p><strong>Cidade:</strong> <span th:text="${resultadoCep.city}"></span></p>
-    <p><strong>Estado (UF):</strong> <span th:text="${resultadoCep.state}"></span></p>
-</div>
+            <div class="flex items-center mb-6">
+                <div class="w-2 h-6 bg-indigo-500 rounded-full mr-3"></div>
+                <h3 class="text-xl font-semibold text-white">Resultado da Busca</h3>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <span class="block text-xs font-medium text-slate-500 uppercase tracking-wider mb-1">CEP</span>
+                    <span class="text-slate-200 font-medium" th:text="${#strings.substring(resultadoCep.cep, 0, 5) + '-' +#strings.substring(resultadoCep.cep, 5,8)}"></span>
+                </div>
+                <div>
+                    <span class="block text-xs font-medium text-slate-500 uppercase tracking-wider mb-1">Rua</span>
+                    <span class="text-slate-200 font-medium" th:text="${resultadoCep.street}"></span>
+                </div>
+                <div>
+                    <span class="block text-xs font-medium text-slate-500 uppercase tracking-wider mb-1">Bairro</span>
+                    <span class="text-slate-200 font-medium" th:text="${resultadoCep.neighborhood}"></span>
+                </div>
+                <div>
+                    <span class="block text-xs font-medium text-slate-500 uppercase tracking-wider mb-1">Cidade</span>
+                    <span class="text-slate-200 font-medium" th:text="${resultadoCep.city}"></span>
+                </div>
+                <div>
+                    <span class="block text-xs font-medium text-slate-500 uppercase tracking-wider mb-1">Estado (UF)</span>
+                    <span class="text-slate-200 font-medium" th:text="${resultadoCep.state}"></span>
+                </div>
+            </div>
+        </div>
+    </main>
 </body>
 </html>
