@@ -1,44 +1,71 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Consulta de CNPJ</title>
-    <link rel="stylesheet" th:href="@{/css/style.css}" />
+<head th:replace="~{layout :: header('Busca de CNPJ')}">
 </head>
-<body>
+<header>
+    <div th:replace="~{layout :: navbar}"></div>
+</header>
+<body class="bg-slate-900 text-zinc-300 min-h-screen font-sans">
+    <main class="w-full max-w-2xl mx-auto flex flex-col justify-center px-4" style="min-height: calc(100vh - 80px);">
+        <h2 class="text-3xl font-bold text-white mb-8">Consulta de CNPJ</h2>
 
-<h2>Consulta de CNPJ</h2>
+        <form action="/consulta-cnpj/buscar" method="get" id="cnpjForm" class="bg-slate-800 p-6 rounded-2xl border border-slate-700 shadow-sm">
 
-<!-- Formulário que envia os dados via GET para a rota de busca -->
-<form action="/consulta-cnpj/buscar" method="get" id="cnpjForm">
-    <div class="campo">
-        <label for="cnpj">Digite o CNPJ:</label>
-        <!-- O atributo 'name="cnpj"' deve ser exatamente igual ao nome no @RequestParam do Java -->
-        <!-- 'th:value' mantém o CNPJ digitado no campo após a busca ser realizada -->
-        <input type="text" id="cnpj" name="cnpj" placeholder="Ex: 00.000.000/0000-00" required/>
-        <button type="submit">Pesquisar</button>
-    </div>
-</form>
+            <div class="mb-4">
+                <label for="cnpj" class="block text-sm font-medium text-slate-400 mb-2">Digite o CNPJ:</label>
 
-<!-- Exibe mensagem de erro caso o Java adicione essa variável no Model -->
-<p class="erro" th:if="${erro}" th:text="${erro}"></p>
+                <input type="text" id="cnpj" name="cnpj" placeholder="Ex: 00.000.000/0000-00" required
+                       class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-slate-200 placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-colors"/>
+            </div>
 
-<!--
-    ESTRUTURA DE EXIBIÇÃO:
-    O bloco abaixo só é renderizado se a variável 'resultadoCep' EXISTIR no Model (ou seja, após a busca).
-    O addAtribute é, na verdade, a criação de uma variável e então atribuir um valor à esta.
--->
-<div class="card" th:if="${resultadoCnpj}">
-    <h3>Resultado da Busca</h3>
+            <button type="submit"
+                    class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-medium rounded-lg px-4 py-3 transition-colors shadow-lg shadow-indigo-500/30">
+                Pesquisar
+            </button>
+        </form>
 
-    <!--O th:text é soberano.-->
-    <p><strong>CNPJ:</strong> <span th:text="${#strings.substring(resultadoCnpj.cnpj, 0, 2) + '.' + #strings.substring(resultadoCnpj.cnpj, 2,5) + '.' + #strings.substring(resultadoCnpj.cnpj, 5,8) + '/' + #strings.substring(resultadoCnpj.cnpj, 8,12) + '-' + #strings.substring(resultadoCnpj.cnpj, 12,14)}"></span></p>
-    <p><strong>Porte:</strong> <span th:text="${resultadoCnpj.porte}"></span></p>
-    <p><strong>CEP:</strong> <span th:text="${#strings.substring(resultadoCnpj.cep, 0, 5) + '-' + #strings.substring(resultadoCnpj.cep, 5,8)}"></span></p>
-    <p><strong>Logradouro:</strong> <span th:text="${resultadoCnpj.logradouro}"></span></p>
-    <p><strong>Bairro:</strong> <span th:text="${resultadoCnpj.bairro}"></span></p>
-    <p><strong>Cidade:</strong> <span th:text="${resultadoCnpj.municipio}"></span></p>
-    <p><strong>Estado (UF):</strong> <span th:text="${resultadoCnpj.uf}"></span></p>
-</div>
+        <p class="erro " th:if="${erro}" th:text="${erro}"></p>
+
+        <div class="mt-8 bg-slate-800/50 border border-slate-700/50 p-6 rounded-2xl shadow-sm backdrop-blur-sm"  th:if="${resultadoCnpj}">
+            <div class="flex items-center mb-6">
+                <div class="w-2 h-6 bg-indigo-500 rounded-full mr-3"></div>
+                <h3 class="text-xl font-semibold text-white">Resultado da Busca</h3>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <span class="block text-xs font-medium text-slate-500 uppercase tracking-wider mb-1">CNPJ</span>
+                    <span th:text="${#strings.substring(resultadoCnpj.cnpj, 0, 2) + '.' + #strings.substring(resultadoCnpj.cnpj, 2,5) + '.' + #strings.substring(resultadoCnpj.cnpj, 5,8) + '/' + #strings.substring(resultadoCnpj.cnpj, 8,12) + '-' + #strings.substring(resultadoCnpj.cnpj, 12,14)}"></span>
+                </div>
+                <div>
+                    <span class="block text-xs font-medium text-slate-500 uppergicase tracking-wider mb-1">PORTE</span>
+                    <span th:text="${resultadoCnpj.porte ?: 'NÃO INFORMADO'}"></span>
+                </div>
+                <div>
+                    <span class="block text-xs font-medium text-slate-500 uppercase tracking-wider mb-1">CEP</span>
+                    <span th:text="${#strings.substring(resultadoCnpj.cep, 0, 5) + '-' + #strings.substring(resultadoCnpj.cep, 5,8)}"></span>
+                </div>
+                <div>
+                    <span class="block text-xs font-medium text-slate-500 uppercase tracking-wider mb-1">EMAIL</span>
+                    <span th:text="${resultadoCnpj.email ?: 'NÃO INFORMADO'}"></span>
+                </div>
+                <div>
+                    <span class="block text-xs font-medium text-slate-500 uppercase tracking-wider mb-1">LOGRADOURO</span>
+                    <span th:text="${#strings.length(resultadoCnpj.logradouro) > 1 ? resultadoCnpj.logradouro : 'NÃO INFORMADO'}"></span>
+                </div>
+                <div>
+                    <span class="block text-xs font-medium text-slate-500 uppercase tracking-wider mb-1">BAIRRO</span>
+                    <span th:text="${resultadoCnpj.bairro}"></span>
+                </div>
+                <div>
+                    <span class="block text-xs font-medium text-slate-500 uppercase tracking-wider mb-1">MUNICIPIO</span>
+                    <span th:text="${resultadoCnpj.municipio}"></span>
+                </div>
+                <div>
+                    <span class="block text-xs font-medium text-slate-500 uppercase tracking-wider mb-1">ESTADO (UF)</span>
+                    <span th:text="${resultadoCnpj.uf}"></span>
+                </div>
+            </div>
+        </div>
+    </main>
 </body>
 </html>
