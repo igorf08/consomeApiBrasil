@@ -1,4 +1,4 @@
-package gov.metrofor.requisicaoApi.model.enums;
+package com.igorf08.consomeApiBrasil.model.enums;
 
 public enum PorteEnum {
     NAO_INFORMADO("NÃO INFORMADO"),

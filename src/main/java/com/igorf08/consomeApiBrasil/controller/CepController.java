@@ -1,7 +1,7 @@
-package gov.metrofor.requisicaoApi.controller;
+package com.igorf08.consomeApiBrasil.controller;
 
-import gov.metrofor.requisicaoApi.model.CepModel;
-import gov.metrofor.requisicaoApi.service.CepService;
+import com.igorf08.consomeApiBrasil.model.CepModel;
+import com.igorf08.consomeApiBrasil.service.CepService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
