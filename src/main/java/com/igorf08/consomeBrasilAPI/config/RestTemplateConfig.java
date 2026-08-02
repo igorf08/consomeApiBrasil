@@ -1,4 +1,4 @@
-package com.igorf08.consomeApiBrasil.config;
+package com.igorf08.consomeBrasilAPI.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

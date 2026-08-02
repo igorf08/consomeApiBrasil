@@ -1,4 +1,4 @@
-# 🇧🇷 Consome API Brasil
+# 🇧🇷 Consome Brasil API
 
 ![Java](https://img.shields.io/badge/Java-21-orange?style=for-the-badge&logo=java)
 ![Spring Boot](https://img.shields.io/badge/Spring_Boot-3-6DB33F?style=for-the-badge&logo=spring)
@@ -6,9 +6,9 @@
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css)
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
 
-Uma aplicação Web elegante e de alto desempenho desenvolvida em **Spring Boot** para consultas de dados estruturados em APIs do governo/serviços públicos brasileiros, como CEPs e CNPJs. 
+Uma aplicação Web ágil desenvolvida em **Spring Boot** para consultas de dados estruturados em APIs do Brasil API, como CEPs e CNPJs. 
 
-Este projeto foi desenhado com o objetivo de demonstrar boas práticas de arquitetura backend com Java, juntamente com uma interface de usuário rica e moderna inspirada em portais SAAS profissionais (Terminal-Style UI/Dark Mode). O deploy foi conteinerizado utilizando **Docker** (Multi-stage build).
+Este projeto foi desenhado com o objetivo de demonstrar boas práticas de arquitetura backend com Java, juntamente com uma interface de usuário inspirada em SAAS modernos. O deploy foi conteinerizado utilizando **Docker**.
 
 ---
 
@@ -26,10 +26,10 @@ Este projeto foi desenhado com o objetivo de demonstrar boas práticas de arquit
 
 O projeto não se resume apenas a fazer chamadas HTTP. A base de código foi cuidadosamente construída seguindo Padrões de Projeto e Clean Code:
 
-- **DTO Pattern (Data Transfer Object)**: Uso massivo do recurso `record` do Java 14+ para separar o que é tráfego da API externa (`ResponseDTO`) do que é visualizado pelo motor de template (`ViewDTO`), garantindo imutabilidade e economia de recursos.
-- **Service Layer**: Toda lógica de negócios e chamadas externas (via `RestTemplate`) centralizadas, retirando a complexidade dos Controllers.
-- **AOP com `@ControllerAdvice`**: Tratamento global de exceções. Sem blocos `try/catch` repetitivos. Os erros (ex: 404 - CEP Inexistente) são capturados e mapeados graciosamente para a View, mantendo o "Happy Path" nos Controllers.
-- **Utils sem Estado (Stateless)**: Formatações de strings complexas foram movidas para classes Utilitárias com métodos `static`, aliviando o motor do Thymeleaf e mantendo a responsabilidade no Java.
+- **DTO Pattern (Data Transfer Object)**: Uso massivo de `records` do Java 14+ para separar o que é tráfego da API externa (`ResponseDTO`) do que é visualizado pelo motor de template (`ViewDTO`), garantindo imutabilidade e economia de recursos.
+- **Service Layer**: Toda lógica de negócios e chamadas externas (via `RestTemplate`) centralizadas, retirando a verbosidade e melhorando a leitura dos Controllers.
+- **Tratamento com `@ControllerAdvice`**: Tratamento global de exceções. Sem blocos `try/catch` repetitivos. Os erros (ex: 404 - CEP Inexistente) são capturados e mapeados para a View, mantendo nos Controllers apenas a sua responsabilidade inicial.
+- **Utils sem Estado (Stateless)**: Formatações de strings foram movidas para classes Utilitárias, aliviando o Thymeleaf e mantendo a responsabilidade no back-end.
 
 ---
 
@@ -60,4 +60,3 @@ O projeto não se resume apenas a fazer chamadas HTTP. A base de código foi cui
 3. Acesse no navegador: `http://localhost:8080`
 
 ---
-*Desenvolvido com dedicação.*

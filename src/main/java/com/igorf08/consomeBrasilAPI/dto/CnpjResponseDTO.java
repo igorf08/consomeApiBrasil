@@ -1,6 +1,6 @@
-package com.igorf08.consomeApiBrasil.dto;
+package com.igorf08.consomeBrasilAPI.dto;
 
-import com.igorf08.consomeApiBrasil.dto.enums.PorteEnum;
+import com.igorf08.consomeBrasilAPI.dto.enums.PorteEnum;
 
 public record CnpjResponseDTO(String cnpj,
                               String uf,

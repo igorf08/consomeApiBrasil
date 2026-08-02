@@ -1,4 +1,4 @@
-package com.igorf08.consomeApiBrasil.controller;
+package com.igorf08.consomeBrasilAPI.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

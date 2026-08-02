@@ -1,6 +1,6 @@
-package com.igorf08.consomeApiBrasil.service;
+package com.igorf08.consomeBrasilAPI.service;
 
-import com.igorf08.consomeApiBrasil.model.CnpjModel;
+import com.igorf08.consomeBrasilAPI.model.CnpjModel;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 

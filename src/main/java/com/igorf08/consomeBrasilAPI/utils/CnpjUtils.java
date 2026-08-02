@@ -1,4 +1,4 @@
-package com.igorf08.consomeApiBrasil.utils;
+package com.igorf08.consomeBrasilAPI.utils;
 
 public class CnpjUtils {
     public static String cnpjFormat(String cnpj) {
