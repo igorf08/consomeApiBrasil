@@ -1,8 +1,11 @@
 FROM maven:3.9.6-eclipse-temurin-21-jammy AS build
-COPY . /app
 WORKDIR /app
-RUN mvn clean package
+COPY pom.xml .
+RUN mvn dependency:go-offline -B
+COPY src ./src
+RUN mvn package -DskipTests
 FROM eclipse-temurin:21-jre-jammy
-COPY --from=build /app/target/*.jar /app/app.jar
+WORKDIR /app
+COPY --from=build /app/target/meu-app-*.jar /app/app.jar
 EXPOSE 8080
 ENTRYPOINT ["java", "-jar", "/app/app.jar"]
