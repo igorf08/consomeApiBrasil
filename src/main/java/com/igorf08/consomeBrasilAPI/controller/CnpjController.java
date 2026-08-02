@@ -1,7 +1,7 @@
-package com.igorf08.consomeApiBrasil.controller;
+package com.igorf08.consomeBrasilAPI.controller;
 
-import com.igorf08.consomeApiBrasil.model.CnpjModel;
-import com.igorf08.consomeApiBrasil.service.CnpjService;
+import com.igorf08.consomeBrasilAPI.model.CnpjModel;
+import com.igorf08.consomeBrasilAPI.service.CnpjService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -1,4 +1,4 @@
-package com.igorf08.consomeApiBrasil.dto;
+package com.igorf08.consomeBrasilAPI.dto;
 
 public record CepResponseDTO(
     String cep,

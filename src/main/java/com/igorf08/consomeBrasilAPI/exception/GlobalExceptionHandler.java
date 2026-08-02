@@ -1,4 +1,4 @@
-package com.igorf08.consomeApiBrasil.exception;
+package com.igorf08.consomeBrasilAPI.exception;
 
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.ui.Model;
