@@ -60,4 +60,3 @@ O projeto não se resume apenas a fazer chamadas HTTP. A base de código foi cui
 3. Acesse no navegador: `http://localhost:8080`
 
 ---
-*Desenvolvido com dedicação.*
