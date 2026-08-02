@@ -1,4 +1,4 @@
-package com.igorf08.consomeBrasilAPI.model.enums;
+package com.igorf08.consomeBrasilAPI.dto.enums;
 
 public enum PorteEnum {
     NAO_INFORMADO("NÃO INFORMADO"),
