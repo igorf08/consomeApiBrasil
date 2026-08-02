@@ -1,7 +1,9 @@
 package com.igorf08.consomeApiBrasil.controller;
 
 import com.igorf08.consomeApiBrasil.dto.CepResponseDTO;
+import com.igorf08.consomeApiBrasil.dto.CepViewDTO;
 import com.igorf08.consomeApiBrasil.service.CepService;
+import com.igorf08.consomeApiBrasil.utils.CepUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,7 +27,14 @@ public class CepController {
     public String buscarCep(@RequestParam(value = "cep", required = false) String cep, Model model) {
         if (cep != null && !cep.isBlank()) {
             CepResponseDTO resultado = cepService.buscaCep(cep);
-            model.addAttribute("resultadoCep", resultado);
+            CepViewDTO viewDTO = new CepViewDTO(
+                CepUtils.formatCep(resultado.cep()),
+                resultado.state(),
+                resultado.city(),
+                resultado.neighborhood(),
+                resultado.street()
+            );
+            model.addAttribute("resultadoCep", viewDTO);
         }
         return "busca-cep";
     };
