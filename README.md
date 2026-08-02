@@ -8,7 +8,9 @@
 
 Uma aplicação Web elegante e de alto desempenho desenvolvida em **Spring Boot** para consultas de dados estruturados em APIs do governo/serviços públicos brasileiros, como CEPs e CNPJs. 
 
-Este projeto foi desenhado com o objetivo de demonstrar boas práticas de arquitetura backend com Java, juntamente com uma interface de usuário inspirada em SAAS modernos. O deploy foi feito utilizando **Docker**.
+Este projeto foi desenhado com o objetivo de demonstrar boas práticas de arquitetura backend com Java, juntamente com uma interface de usuário inspirada em SAAS modernos. O deploy foi feito utilizando **Docker**.  
+
+<img src="https://i.imgur.com/j0pgA6G.png" alt="Tela inicial do projeto" width="100%">
 
 ---
 
