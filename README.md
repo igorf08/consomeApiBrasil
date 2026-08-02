@@ -8,13 +8,13 @@
 
 Uma aplicação Web elegante e de alto desempenho desenvolvida em **Spring Boot** para consultas de dados estruturados em APIs do governo/serviços públicos brasileiros, como CEPs e CNPJs. 
 
-Este projeto foi desenhado com o objetivo de demonstrar boas práticas de arquitetura backend com Java, juntamente com uma interface de usuário rica e moderna inspirada em portais SAAS profissionais (Terminal-Style UI/Dark Mode). O deploy foi conteinerizado utilizando **Docker** (Multi-stage build).
+Este projeto foi desenhado com o objetivo de demonstrar boas práticas de arquitetura backend com Java, juntamente com uma interface de usuário inspirada em SAAS modernos. O deploy foi feito utilizando **Docker**.
 
 ---
 
 ## ✨ Features
 
-- 🔎 **Consulta de CEP**: Busque informações completas de endereços usando o CEP.
+- 🔎 **Consulta de CEP**: Busque informações de endereços usando o CEP.
 - 🏢 **Consulta de CNPJ**: Dados cadastrais da Receita Federal como Razão Social, Porte, Endereço e E-mail.
 - 🎨 **Interface Moderna**: UI projetada com *Tailwind CSS* seguindo a estética "Glassmorphism" e Terminal Dark Mode.
 - 📱 **Totalmente Responsivo**: Experiência fluida tanto no Desktop quanto no Mobile.
@@ -26,10 +26,10 @@ Este projeto foi desenhado com o objetivo de demonstrar boas práticas de arquit
 
 O projeto não se resume apenas a fazer chamadas HTTP. A base de código foi cuidadosamente construída seguindo Padrões de Projeto e Clean Code:
 
-- **DTO Pattern (Data Transfer Object)**: Uso massivo do recurso `record` do Java 14+ para separar o que é tráfego da API externa (`ResponseDTO`) do que é visualizado pelo motor de template (`ViewDTO`), garantindo imutabilidade e economia de recursos.
+- **DTO Pattern (Data Transfer Object)**: Uso do recurso `records` do Java 14+ para separar o que é tráfego da API (`ResponseDTO`) do que é visualizado pelo thymeleaf (`ViewDTO`), garantindo imutabilidade e economia de recursos.
 - **Service Layer**: Toda lógica de negócios e chamadas externas (via `RestTemplate`) centralizadas, retirando a complexidade dos Controllers.
-- **AOP com `@ControllerAdvice`**: Tratamento global de exceções. Sem blocos `try/catch` repetitivos. Os erros (ex: 404 - CEP Inexistente) são capturados e mapeados graciosamente para a View, mantendo o "Happy Path" nos Controllers.
-- **Utils sem Estado (Stateless)**: Formatações de strings complexas foram movidas para classes Utilitárias com métodos `static`, aliviando o motor do Thymeleaf e mantendo a responsabilidade no Java.
+- **Tratamento com `@ControllerAdvice`**: Tratamento global de exceções. Sem blocos `try/catch` repetitivos. Os erros (ex: 404 - CEP Inexistente) são capturados e mapeados graciosamente para a View, mantendo o "Happy Path" nos Controllers.
+- **Utils sem Estado (Stateless)**: Formatações de strings complexas foram movidas para classes Utilitárias com métodos `static`, aliviando o Thymeleaf e mantendo a responsabilidade no Java.
 
 ---
 
