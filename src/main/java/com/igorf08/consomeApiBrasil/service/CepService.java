@@ -1,6 +1,6 @@
 package com.igorf08.consomeApiBrasil.service;
 
-import com.igorf08.consomeApiBrasil.model.CepModel;
+import com.igorf08.consomeApiBrasil.dto.CepResponseDTO;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -13,9 +13,9 @@ public class CepService {
         this.restTemplate = restTemplate;
     }
 
-    public CepModel buscaCep(String cep) {
+    public CepResponseDTO buscaCep(String cep) {
         String url = "https://brasilapi.com.br/api/cep/v2/{cep}";
-        return restTemplate.getForObject(url, CepModel.class, cep);
+        return restTemplate.getForObject(url, CepResponseDTO.class, cep);
     };
 
 }
