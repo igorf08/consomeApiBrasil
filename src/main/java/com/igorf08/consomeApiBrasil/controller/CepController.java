@@ -2,8 +2,8 @@ package com.igorf08.consomeApiBrasil.controller;
 
 import com.igorf08.consomeApiBrasil.dto.CepResponseDTO;
 import com.igorf08.consomeApiBrasil.dto.CepViewDTO;
+import com.igorf08.consomeApiBrasil.mapper.CepMapper;
 import com.igorf08.consomeApiBrasil.service.CepService;
-import com.igorf08.consomeApiBrasil.utils.CepUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,9 +13,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class CepController {
 
     private final CepService cepService;
+    private final CepMapper cepMapper;
 
-    public CepController(CepService cepService) {
+
+    public CepController(CepService cepService, CepMapper cepMapper) {
         this.cepService = cepService;
+        this.cepMapper = cepMapper;
     }
 
     @GetMapping("/consulta-cep")
@@ -27,13 +30,7 @@ public class CepController {
     public String buscarCep(@RequestParam(value = "cep", required = false) String cep, Model model) {
         if (cep != null && !cep.isBlank()) {
             CepResponseDTO resultado = cepService.buscaCep(cep);
-            CepViewDTO viewDTO = new CepViewDTO(
-                CepUtils.formatCep(resultado.cep()),
-                resultado.state(),
-                resultado.city(),
-                resultado.neighborhood(),
-                resultado.street()
-            );
+            CepViewDTO viewDTO = cepMapper.toViewDTO(resultado);
             model.addAttribute("resultadoCep", viewDTO);
         }
         return "busca-cep";
