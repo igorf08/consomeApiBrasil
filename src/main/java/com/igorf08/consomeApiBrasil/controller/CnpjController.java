@@ -1,8 +1,6 @@
 package com.igorf08.consomeApiBrasil.controller;
 
 import com.igorf08.consomeApiBrasil.dto.CnpjResponseDTO;
-import com.igorf08.consomeApiBrasil.dto.CnpjViewDTO;
-import com.igorf08.consomeApiBrasil.mapper.CnpjMapper;
 import com.igorf08.consomeApiBrasil.service.CnpjService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,12 +11,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class CnpjController {
 
     private final CnpjService cnpjService;
-    private final CnpjMapper cnpjMapper;
 
-    public CnpjController(CnpjService cnpjService, CnpjMapper cnpjMapper) {
-
+    public CnpjController(CnpjService cnpjService) {
         this.cnpjService = cnpjService;
-        this.cnpjMapper = cnpjMapper;
     }
 
     @GetMapping("/consulta-cnpj")
@@ -31,8 +26,7 @@ public class CnpjController {
 
         if (cnpj != null && !cnpj.isBlank()) {
             CnpjResponseDTO resultado = cnpjService.buscaCnpj(cnpj);
-            CnpjViewDTO viewDTO = cnpjMapper.toCnpjView(resultado);
-            model.addAttribute("resultadoCnpj", viewDTO);
+            model.addAttribute("resultadoCnpj", resultado);
         }
 
         return "busca-cnpj";
