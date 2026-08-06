@@ -1,10 +1,9 @@
 package com.igorf08.consomeApiBrasil.dto;
 
-public record CepResponseDTO(
-    String cep,
-    String state,
-    String city,
-    String neighborhood,
-    String street,
-    String service
-) {}
+import com.igorf08.consomeApiBrasil.utils.CepUtils;
+
+public record CepResponseDTO(String cep, String state, String city, String neighborhood, String street) {
+    public String getCepFormatado() {
+        return CepUtils.formatCep(this.cep);
+    }
+}

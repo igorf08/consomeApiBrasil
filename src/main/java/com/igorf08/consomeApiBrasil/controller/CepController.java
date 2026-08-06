@@ -1,8 +1,6 @@
 package com.igorf08.consomeApiBrasil.controller;
 
 import com.igorf08.consomeApiBrasil.dto.CepResponseDTO;
-import com.igorf08.consomeApiBrasil.dto.CepViewDTO;
-import com.igorf08.consomeApiBrasil.mapper.CepMapper;
 import com.igorf08.consomeApiBrasil.service.CepService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,12 +11,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class CepController {
 
     private final CepService cepService;
-    private final CepMapper cepMapper;
 
 
-    public CepController(CepService cepService, CepMapper cepMapper) {
+    public CepController(CepService cepService) {
         this.cepService = cepService;
-        this.cepMapper = cepMapper;
     }
 
     @GetMapping("/consulta-cep")
@@ -30,8 +26,7 @@ public class CepController {
     public String buscarCep(@RequestParam(value = "cep", required = false) String cep, Model model) {
         if (cep != null && !cep.isBlank()) {
             CepResponseDTO resultado = cepService.buscaCep(cep);
-            CepViewDTO viewDTO = cepMapper.toViewDTO(resultado);
-            model.addAttribute("resultadoCep", viewDTO);
+            model.addAttribute("resultadoCep", resultado);
         }
         return "busca-cep";
     };
