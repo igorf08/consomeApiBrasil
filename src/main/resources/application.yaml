@@ -2,8 +2,8 @@ spring:
   application:
     name: consomeApiBrasil
   datasource:
-    url: jdbc:postgresql://${DB_HOST}:${DB_PORT:5432}/${DB_NAME:postgres}?sslmode=require
-    username: ${DB_USERNAME:postgres}
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
     password: ${DB_PASSWORD}
     driver-class-name: org.postgresql.Driver
   jpa:
