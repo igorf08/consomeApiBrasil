@@ -3,7 +3,7 @@ package com.igorf08.consomeApiBrasil.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "tb_ceps")
+@Table(schema = "consomeApiBrasil", name = "tb_ceps")
 public class CepModel {
 
     @Id

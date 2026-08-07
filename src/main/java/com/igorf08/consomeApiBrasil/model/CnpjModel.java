@@ -4,7 +4,7 @@ import com.igorf08.consomeApiBrasil.dto.enums.PorteEnum;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "tb_cnpjs")
+@Table(schema = "consomeApiBrasil", name = "tb_cnpjs")
 public class CnpjModel {
 
     @Id
