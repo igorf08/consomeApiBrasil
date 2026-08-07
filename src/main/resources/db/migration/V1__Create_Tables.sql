@@ -1,4 +1,4 @@
-CREATE TABLE tb_ceps (
+CREATE TABLE consomeApiBrasil.tb_ceps (
     id SERIAL PRIMARY KEY,
     cep VARCHAR(10) UNIQUE NOT NULL,
     state VARCHAR(2),
@@ -8,7 +8,7 @@ CREATE TABLE tb_ceps (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE tb_cnpjs (
+CREATE TABLE consomeApiBrasil.tb_cnpjs (
     id SERIAL PRIMARY KEY,
     cnpj VARCHAR(20) UNIQUE NOT NULL,
     uf VARCHAR(2),
