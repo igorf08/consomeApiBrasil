@@ -8,6 +8,7 @@ CREATE TABLE consomeapibrasil.tb_ceps (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+
 CREATE TABLE consomeapibrasil.tb_cnpjs (
     id SERIAL PRIMARY KEY,
     cnpj VARCHAR(20) UNIQUE NOT NULL,
